@@ -102,7 +102,7 @@ data2<-transform(data,EVTYPE2=factor(EVTYPE2,levels=c("ASTRONOMICAL LOW TIDE","A
 
 Firstly I addressed the question "which types of events are most harmful with respect to population health?"
 
-```{r population health, cache=TRUE}
+```{r population health, fig.width=8, fig.height=10, cache=TRUE}
 library(ggplot2)
 library(gridExtra)
 
@@ -114,14 +114,14 @@ fgraph<-ggplot(data=data2,aes(EVTYPE2,FATALITIES))+geom_boxplot()+theme(axis.tex
 igraph<-ggplot(data=data2,aes(EVTYPE2,INJURIES))+geom_boxplot()+theme(axis.text.x = element_text(angle = 90, hjust = 1))+
     labs(title="Injuries Caused by Each Event Type", x="Event Types",y="INJURIES")
 
-grid.arrange(fgraph,igraph)
+grid.arrange(fgraph,igraph,ncol=1)
 ```
 
 **Question 2**
 
 Then I wanna show which types of events have the greatest economic consequences
 
-```{r economic consequences, cache=TRUE}
+```{r economic consequences, fig.width=8, cache=TRUE}
 
 #plot the relationships between event types and property damage
 pgraph<-ggplot(data=data2,aes(EVTYPE2,PROPDMG))+geom_boxplot()+theme(axis.text.x = element_text(angle = 90, hjust = 1))+
